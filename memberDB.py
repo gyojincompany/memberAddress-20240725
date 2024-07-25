@@ -19,7 +19,7 @@ if userNum == "1":
     memberemail = input("* 이메일을 입력하세요 :")
     memberage = input("* 나이를 입력하세요 :")
 
-    sql = f"INSERT INTO membertbl(memberid, membername, memberemail, memberage) VALUES ('{memberid}','{membername}','{memberemail}','{memberage}')"
+    sql = f"INSERT INTO membertbl(memberid, membername, memberemail, memberage) VALUES ('{memberid}','{membername}','{memberemail}',{memberage})"
 
     cur = conn.cursor()  # cursor 생성
     success = cur.execute(sql)  # sql문 실행->반환되는 값이 1이면 성공
@@ -32,6 +32,18 @@ if userNum == "1":
     cur.close()
     conn.commit()
     conn.close()
+
+elif userNum == "2":
+    memberid = input("* 회원정보를 수정할 아이디를 입력하세요 :")
+    membername = input("* 수정할 회원이름을 입력하세요 :")
+    memberemail = input("* 수정할 이메일을 입력하세요 :")
+    memberage = input("* 수정할 나이를 입력하세요 :")
+
+    sql = f"UPDATE membertbl SET membername='{membername}', memberemail='{memberemail}', memberage={memberage} WHERE memberid='{memberid}'"
+
+
+
+
 
 
 
