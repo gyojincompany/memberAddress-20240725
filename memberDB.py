@@ -41,7 +41,17 @@ elif userNum == "2":
 
     sql = f"UPDATE membertbl SET membername='{membername}', memberemail='{memberemail}', memberage={memberage} WHERE memberid='{memberid}'"
 
+    cur = conn.cursor()  # cursor 생성
+    success = cur.execute(sql)  # sql문 실행->반환되는 값이 1이면 성공
 
+    if success == 1:
+        print("회원수정 성공하셨습니다.")
+    else:
+        print("회원수정 실패입니다.")
+
+    cur.close()
+    conn.commit()
+    conn.close()
 
 
 
