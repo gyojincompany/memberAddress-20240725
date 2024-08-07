@@ -71,6 +71,25 @@ while True:
         cur.close()
         conn.commit()
 
+    elif userNum == "4":  # 회원 목록 보기
+        sql = "SELECT * FROM membertbl"
+
+        cur = conn.cursor()  # cursor 생성
+        cur.execute(sql)
+        allMemberList = cur.fetchall()  # SELECT 문의 결과를 반환->튜플
+
+        print(allMemberList)
+
+        print("************** 회원 리스트 ***************")
+        for member in allMemberList:
+            print(member[0], end=" / ")
+            print(member[1], end=" / ")
+            print(member[2], end=" / ")
+            print(member[3], end=" / ")
+            print(member[4])
+
+        cur.close()
+
 
     elif userNum == "5":
         print("회원관리 프로그램을 종료합니다.")
