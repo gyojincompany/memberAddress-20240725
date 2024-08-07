@@ -1,10 +1,20 @@
 import pymysql
-
 conn = pymysql.connect(host="localhost", user="root", password="12345", db="memberdb2")
 # python program과 mysql 간의 connection 생성
 
+def checkId(memberid):
+    sql = f"SELECT COUNT(*) FROM membertbl WHERE memberid = '{memberid}'"
+
+    cur = conn.cursor()
+    cur.execute(sql)
+    member = cur.fetchall()  # 아이디로 조회한 결과-> 레코드가 1개 or 0개
+    # print(member[0][0])
+
+    return member[0][0]
+
 while True:
     print("********** 회원관리 프로그램 ************")
+    print("(0) 가입가능 아이디 조회")
     print("(1) 회원 가입")
     print("(2) 회원 정보 수정")
     print("(3) 회원 탈퇴")
@@ -12,11 +22,34 @@ while True:
     print("(5) 프로그램 종료")
     print("**************************************")
 
-    userNum = input("위 메뉴 중 한가지를 선택하세요(1~5) :")
+    userNum = input("위 메뉴 중 한가지를 선택하세요(0~5) :")
 
-    if userNum == "1":
+    if userNum == "0":
+        memberid = input("* 가입하시려는 회원아이디를 입력하세요 :")
+        sql = f"SELECT COUNT(*) FROM membertbl WHERE memberid = '{memberid}'"
+
+        cur = conn.cursor()
+        cur.execute(sql)
+        member = cur.fetchall()  # 아이디로 조회한 결과-> 레코드가 1개 or 0개
+        # print(member[0][0])
+
+        if member[0][0] == 1:
+            print(f"--> {memberid}는 이미 존재하는 아이디 입니다.")
+        else:
+            print(f"--> {memberid}는 가입 가능한 아이디 입니다.")
+
+
+    elif userNum == "1":
         print("가입하시려는 회원정보를 입력하세요.")
-        memberid = input("* 회원아이디를 입력하세요 :")
+
+        while True:
+            memberid = input("* 회원아이디를 입력하세요 :")
+            checkFlag = checkId(memberid)  # 0 or 1
+            if checkFlag == 0:
+                break
+            else:
+                print("--> 이미 존재하는 아이디 입니다.")
+
         membername = input("* 회원이름을 입력하세요 :")
         memberemail = input("* 이메일을 입력하세요 :")
         memberage = input("* 나이를 입력하세요 :")
@@ -98,6 +131,7 @@ while True:
 
     else:
         print("!!!존재하지 않는 메뉴번호입니다. 다시 입력해주세요.!!!")
+
 
 
 
