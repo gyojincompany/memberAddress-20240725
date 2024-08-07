@@ -1,6 +1,7 @@
 import pymysql
 
-conn = pymysql.connect(host="localhost", user="root", password="12345", db="memberdb")
+conn = pymysql.connect(host="localhost", user="root", password="12345", db="memberdb2")
+# python program과 mysql 간의 connection 생성
 
 while True:
     print("********** 회원관리 프로그램 ************")
@@ -31,8 +32,8 @@ while True:
             print("회원가입 실패입니다.")
 
         cur.close()
-        conn.commit()
-        conn.close()
+        conn.commit()  # insert, delete, update 를 실행한 후에는 반드시 commit
+
 
     elif userNum == "2":
         memberid = input("* 회원정보를 수정할 아이디를 입력하세요 :")
@@ -52,7 +53,7 @@ while True:
 
         cur.close()
         conn.commit()
-        conn.close()
+
 
     elif userNum == "3":
         memberid = input("* 탈퇴할 회원아이디를 입력하세요 :")
@@ -69,10 +70,11 @@ while True:
 
         cur.close()
         conn.commit()
-        conn.close()
+
 
     elif userNum == "5":
         print("회원관리 프로그램을 종료합니다.")
+        conn.close()
         break
 
     else:
