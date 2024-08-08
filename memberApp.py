@@ -9,6 +9,7 @@ from PyQt5 import uic
 form_class = uic.loadUiType("ui/member.ui")[0]
 # 제작해 놓은 ui 불러오기
 
+
 class MainWindow(QMainWindow, form_class):
     def __init__(self):
         super().__init__()
