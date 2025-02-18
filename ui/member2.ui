@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="tab1">
      <attribute name="title">
@@ -534,6 +534,34 @@
         <width>151</width>
         <height>20</height>
        </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>회원리스트</string>
+     </attribute>
+     <widget class="QTableWidget" name="listTable">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>50</y>
+        <width>341</width>
+        <height>241</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="memberlist_btn">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>341</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>전체 회원 목록 조회</string>
       </property>
      </widget>
     </widget>
